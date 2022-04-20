@@ -12,3 +12,6 @@ Simple Bible App with Streamlit &amp; Text Analysis
 
 #### Pkgs Installation
 + pip install streamlit pandas spacy textblob neattext nltk altair matplotlib
+
+#### Live Demo:
+https://share.streamlit.io/jeraldcrisbergantinos/streambible/main/app.py
