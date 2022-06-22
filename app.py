@@ -25,11 +25,25 @@ def main():
     st.title("StreamBible")
     menu = ["Home", "MultiVerse", "About"]
 
-    df = load_bible("data/KJV_Bible.csv")
+    #df = load_bible("data/KJV_Bible.csv")
 
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == "Home":
         st.subheader("Single Verse Search")
+
+        version_list = ['American Standard Version', 'King James Version', "Young's Literal Translation"]
+        version = st.sidebar.selectbox("Version", version_list)
+        version_idx = version_list.index(version)
+
+        df = None
+        if version_idx == 0:
+            df = load_bible("data/ASV_Bible.csv")
+            df.rename(columns={'b':'book', 'c':'chapter', 'v':'verse', 't':'text'}, inplace=True)
+        elif version_idx == 1:
+            df = load_bible("data/KJV_Bible.csv")
+        else:
+            df = load_bible("data/YLT_Bible.csv")
+            df.rename(columns={'b':'book', 'c':'chapter', 'v':'verse', 't':'text'}, inplace=True)
 
         #st.dataframe(df)
         book_list = df["book"].unique().tolist()
